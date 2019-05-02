@@ -347,11 +347,11 @@ private:
      */
     void move(List& l)
     {
-        _items			= std::move(l._items);
-        _item_count		= l._item_count;
-        _capacity		= l._capacity;
-        l._item_count	= 0;
-        l._capacity		= 0;
+        //_items			= std::move(l._items);
+        //_item_count		= l._item_count;
+        //_capacity		= l._capacity;
+        //l._item_count	= 0;
+        //l._capacity		= 0;
     }
 
     void copy(const List& l)
