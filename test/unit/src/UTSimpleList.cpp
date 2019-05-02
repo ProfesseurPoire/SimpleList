@@ -214,3 +214,21 @@ TEST_F(ListTesting, add)
     assert_that(list[1], equals(5));
     assert_that(list[2], equals(1));
 }
+
+class Foo
+{
+public:
+
+    Foo(int a)
+    {
+        _a = a;
+    }
+    int _a;
+};
+
+TEST_F(ListTesting, without_default_constructor)
+{
+    cabba::List<Foo> l;
+    // The test here is that this needs to pass compilation
+    l.resize(10);
+}

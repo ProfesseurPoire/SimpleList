@@ -311,7 +311,7 @@ public:
     {
         assert(new_size > 0);
 
-        Pointer values = new ValueType[new_size];
+        Pointer values = static_cast<Pointer>( operator new[](new_size * sizeof(ValueType)));
 
         for (int i = 0; i < _capacity; ++i)
             values[i] = _items[i];
@@ -374,7 +374,12 @@ private:
         if (_capacity< size)
         {
             delete [] _items;
-            _items          = new ValueType[size];
+
+            // This has the advantage to avoid any constructor 
+            // Meaning more performance and no problem with class without
+            // a default constructor 
+
+            _items          = static_cast<Pointer>( operator new[](size * sizeof(ValueType)));
             _capacity       = size;
             _item_count     = size;
         }
