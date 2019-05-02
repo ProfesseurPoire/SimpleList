@@ -31,6 +31,6 @@ before_script:
     - cd ../..
     - mkdir build
     - cd build
-    - cmake .. -DCMAKE_INSTALL_PREFIX=${path_to_install} -DCMAKE_BUILD_TYPE=Debug
+    - cmake .. -DCMAKE_INSTALL_PREFIX=${path_to_install} -DCMAKE_BUILD_TYPE=Debug 
 
 script: make && ctest -V
