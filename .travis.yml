@@ -21,7 +21,7 @@ matrix:
       osx_image: xcode9.2
 
 before_script:  
-	- git clone https://github.com/ProfesseurPoire/Cabbages-test
+    - git clone https://github.com/ProfesseurPoire/Cabbages-test
     - cd Cabbages-test
     - mkdir build
     - cd build
