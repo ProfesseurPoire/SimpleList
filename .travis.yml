@@ -16,18 +16,17 @@ matrix:
             - g++-6
           before_instal:
             - CC=gcc-6 && CXX=g++-6
-
+            - git clone https://github.com/ProfesseurPoire/Cabbages-test
+            - cd Cabbages-test
+            - mkdir build
+            - cd build
+            - cmake ..
+            - sudo make && make install
+            - cd ../..
     - os: osx
       osx_image: xcode9.2
 
 before_script:  
-    - git clone https://github.com/ProfesseurPoire/Cabbages-test
-    - cd Cabbages-test
-    - mkdir build
-    - cd build
-    - cmake ..
-    - sudo make && make install
-    - cd ../../
     - mkdir build
     - cd build
     - cmake ..
