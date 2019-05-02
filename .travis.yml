@@ -26,11 +26,11 @@ before_script:
     - mkdir build
     - cd build
     - path_to_install="$PWD"/cabbages-test
-    - cmake .. -DCMAKE_INSTALL_PREFIX=${path_to_install}
+    - cmake .. -DCMAKE_INSTALL_PREFIX=${path_to_install} -DCMAKE_BUILD_TYPE=Debug
     - make && make install
     - cd ../..
     - mkdir build
     - cd build
-    - cmake .. -DCMAKE_INSTALL_PREFIX=${path_to_install}
+    - cmake .. -DCMAKE_INSTALL_PREFIX=${path_to_install} -DCMAKE_BUILD_TYPE=Debug
 
 script: make && ctest -V
