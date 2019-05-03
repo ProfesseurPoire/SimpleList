@@ -13,6 +13,14 @@ else()
     set(debug_suffix "")
 endif()
 
+
+# We'll install the library in lib64 if we're in x64, in lib otherwise
+if(NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(arch_suffix "")
+else()
+    set(arch_suffix "64")
+endif()
+
 set(target_name ${PROJECT_NAME}${debug_suffix})
 
 add_library(${target_name} INTERFACE) 
@@ -30,12 +38,6 @@ target_include_directories( ${target_name}  INTERFACE
 # Installing the library and exporting the targets
 #####################################################
 
-# We'll install the library in lib64 if we're in x64, in lib otherwise
-if(NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(arch_suffix "")
-else()
-    set(arch_suffix "64")
-endif()
 
 include(CMakePackageConfigHelpers)
 
