@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.9.0)
 
 project(SimpleList VERSION 1.0.0)
 
+set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS TRUE)
+
 # I basically build a second library version for the debug configuration
 # This might not work if you generate a visual studio solution since
 # multiconfig and whatnot but that'll do for now
