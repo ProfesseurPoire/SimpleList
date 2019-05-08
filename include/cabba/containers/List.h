@@ -1,6 +1,7 @@
 #pragma once
 
-#include <assert.h>
+#include <assert.h>     // Added for the assert function obviously
+#include <utility>      // Added for variadic template and std::forward
 
 namespace cabba 
 {
@@ -40,9 +41,7 @@ public:
     List(Pointer values, int count)
         : _items(values), _capacity(count), _item_count(count){}
 
-    List(const List&l)              {copy(l);}
-    explicit List(const int size)   {allocate(size);}
-    ~List()                         {delete [] _items;}
+    List(const List&l)              { copy(l);           }
 
     /*!
     * @brief    Initialize the list with a certain @ref size
@@ -50,12 +49,9 @@ public:
     *           store in the list. This will reduce the need to resize the array,
     *           which is a very costly operation
     */
+    explicit List(const int size)   { allocate(size);    }
 
-  /*  List(List&& l) 
-        {
-        move(l);
-    }*/
-
+    ~List()                         { delete [] _items;  }
 
 // Subscript Operator
 
@@ -129,6 +125,15 @@ public:
             resize(_item_count);
 
         _items[_item_count - 1] = item;
+    }
+
+    template<typename... Args>
+    void emplace(Args&& ... args)
+    {
+        if (_capacity < (++_item_count))
+            resize(_item_count);
+
+        _items[_item_count - 1] = ValueType(std::forward<Args>(args)...);
     }
 
     /*!

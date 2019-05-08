@@ -9,7 +9,6 @@ struct ListTesting : public Test
     cabba::List<int> list;
 };
 
-
 TEST_F(ListTesting, push_back)
 {
     list.push_back(12);
@@ -223,6 +222,11 @@ public:
     {
         _a = a;
     }
+
+    Foo(int a, int b)
+    {
+        _a = a * b;
+    }
     int _a;
 };
 
@@ -231,4 +235,14 @@ TEST_F(ListTesting, without_default_constructor)
     cabba::List<Foo> l;
     // The test here is that this needs to pass compilation
     l.resize(10);
+}
+
+
+TEST_F(ListTesting, emplace)
+{
+    
+    cabba::List<Foo> l;
+    l.emplace(2, 4);
+
+    assert_that(l.first()._a, equals(8));
 }
